@@ -1,0 +1,89 @@
+﻿{
+    "Routes": [
+        {
+            "DownstreamPathTemplate": "/api/{everything}",
+            "DownstreamScheme": "http",
+            "ServiceName": "userservice",
+            "UpstreamPathTemplate": "/user/{everything}",
+            "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ]
+        },
+        {
+            "DownstreamPathTemplate": "/api/{everything}",
+            "DownstreamScheme": "http",
+            "ServiceName": "teamservice",
+            "UpstreamPathTemplate": "/team/{everything}",
+            "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ]
+        },
+        {
+            "DownstreamPathTemplate": "/api/{everything}",
+            "DownstreamScheme": "http",
+            "ServiceName": "taskservice",
+            "UpstreamPathTemplate": "/task/{everything}",
+            "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ]
+        },
+        {
+            "DownstreamPathTemplate": "/api/{everything}",
+            "DownstreamScheme": "http",
+            "ServiceName": "stickerservice",
+            "UpstreamPathTemplate": "/sticker/{everything}",
+            "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ]
+        },
+        {
+            "DownstreamPathTemplate": "/api/{everything}",
+            "DownstreamScheme": "http",
+            "ServiceName": "shareservice",
+            "UpstreamPathTemplate": "/share/{everything}",
+            "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ]
+        },
+        {
+            "DownstreamPathTemplate": "/api/{everything}",
+            "DownstreamScheme": "http",
+            "ServiceName": "proofservice",
+            "UpstreamPathTemplate": "/proof/{everything}",
+            "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ]
+        },
+        {
+            "DownstreamPathTemplate": "/api/{everything}",
+            "DownstreamScheme": "http",
+            "ServiceName": "notificationservice",
+            "UpstreamPathTemplate": "/notification/{everything}",
+            "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ]
+        },
+        {
+            "DownstreamPathTemplate": "/api/{everything}",
+            "DownstreamScheme": "http",
+            "ServiceName": "leaderboardservice",
+            "UpstreamPathTemplate": "/leaderboard/{everything}",
+            "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ]
+        },
+        {
+            "DownstreamPathTemplate": "/api/{everything}",
+            "DownstreamScheme": "http",
+            "ServiceName": "friendservice",
+            "UpstreamPathTemplate": "/friend/{everything}",
+            "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ]
+        },
+        {
+            "DownstreamPathTemplate": "/api/{everything}",
+            "DownstreamScheme": "http",
+            "ServiceName": "chatservice",
+            "UpstreamPathTemplate": "/chat/{everything}",
+            "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ]
+        },
+        {
+            "DownstreamPathTemplate": "/api/{everything}",
+            "DownstreamScheme": "http",
+            "ServiceName": "assignmentservice",
+            "UpstreamPathTemplate": "/assignment/{everything}",
+            "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ]
+        }
+
+    ],
+    "GlobalConfiguration": {
+        "ServiceDiscoveryProvider": {
+            "Host": "consul",
+            "Port": 8500,
+            "Type": "Consul"
+        }
+    }
+}

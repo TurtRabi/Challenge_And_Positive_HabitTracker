@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "Y2KS8nYgikXFC/p5v/3Spq04WUfE2uNSad7cCBfSdgk=",
+  "Source": "ShareService",
+  "BasePath": "_content/ShareService",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}

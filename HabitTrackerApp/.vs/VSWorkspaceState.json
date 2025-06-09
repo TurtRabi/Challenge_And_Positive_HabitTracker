@@ -1,0 +1,13 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\src",
+    "\\src\\ChatService\\Extensions",
+    "\\src\\LeaderboardService\\Extensions",
+    "\\src\\NotificationService\\Extensions",
+    "\\src\\StickerService\\Extensions",
+    "\\src\\TaskService\\Extensions",
+    "\\src\\TeamService\\Extensions"
+  ],
+  "PreviewInSolutionExplorer": false
+}
