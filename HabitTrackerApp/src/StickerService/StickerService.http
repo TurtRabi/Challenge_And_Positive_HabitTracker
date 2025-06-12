@@ -1,6 +1,0 @@
-@StickerService_HostAddress = http://localhost:5119
-
-GET {{StickerService_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###
