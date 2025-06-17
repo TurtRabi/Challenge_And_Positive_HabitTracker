@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "uBySfAVA7k6zM3foUBq8qFegVFxIPLi321F54RZFrLM=",
+  "Source": "FriendshipService",
+  "BasePath": "_content/FriendshipService",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}

@@ -1,0 +1,166 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "E:\\ChallengeAndPositivehabitTracker\\Challenge_And_Positive_HabitTracker\\HabitTrackerApp\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{6BA0280E-D055-4377-9D47-E39912C08B37}|src\\UserService\\UserService.csproj|e:\\challengeandpositivehabittracker\\challenge_and_positive_habittracker\\habittrackerapp\\src\\userservice\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6BA0280E-D055-4377-9D47-E39912C08B37}|src\\UserService\\UserService.csproj|solutionrelative:src\\userservice\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6BA0280E-D055-4377-9D47-E39912C08B37}|src\\UserService\\UserService.csproj|e:\\challengeandpositivehabittracker\\challenge_and_positive_habittracker\\habittrackerapp\\src\\userservice\\services\\serviceuser\\userservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6BA0280E-D055-4377-9D47-E39912C08B37}|src\\UserService\\UserService.csproj|solutionrelative:src\\userservice\\services\\serviceuser\\userservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6BA0280E-D055-4377-9D47-E39912C08B37}|src\\UserService\\UserService.csproj|e:\\challengeandpositivehabittracker\\challenge_and_positive_habittracker\\habittrackerapp\\src\\userservice\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6BA0280E-D055-4377-9D47-E39912C08B37}|src\\UserService\\UserService.csproj|solutionrelative:src\\userservice\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6BA0280E-D055-4377-9D47-E39912C08B37}|src\\UserService\\UserService.csproj|e:\\challengeandpositivehabittracker\\challenge_and_positive_habittracker\\habittrackerapp\\src\\userservice\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6BA0280E-D055-4377-9D47-E39912C08B37}|src\\UserService\\UserService.csproj|solutionrelative:src\\userservice\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6BA0280E-D055-4377-9D47-E39912C08B37}|src\\UserService\\UserService.csproj|e:\\challengeandpositivehabittracker\\challenge_and_positive_habittracker\\habittrackerapp\\src\\userservice\\dto\\request\\role\\rolecreaterequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6BA0280E-D055-4377-9D47-E39912C08B37}|src\\UserService\\UserService.csproj|solutionrelative:src\\userservice\\dto\\request\\role\\rolecreaterequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6BA0280E-D055-4377-9D47-E39912C08B37}|src\\UserService\\UserService.csproj|e:\\challengeandpositivehabittracker\\challenge_and_positive_habittracker\\habittrackerapp\\src\\userservice\\services\\servicerole\\roleservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6BA0280E-D055-4377-9D47-E39912C08B37}|src\\UserService\\UserService.csproj|solutionrelative:src\\userservice\\services\\servicerole\\roleservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6BA0280E-D055-4377-9D47-E39912C08B37}|src\\UserService\\UserService.csproj|e:\\challengeandpositivehabittracker\\challenge_and_positive_habittracker\\habittrackerapp\\src\\userservice\\controllers\\rolecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6BA0280E-D055-4377-9D47-E39912C08B37}|src\\UserService\\UserService.csproj|solutionrelative:src\\userservice\\controllers\\rolecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6BA0280E-D055-4377-9D47-E39912C08B37}|src\\UserService\\UserService.csproj|e:\\challengeandpositivehabittracker\\challenge_and_positive_habittracker\\habittrackerapp\\src\\userservice\\dto\\request\\role\\roleupdaterequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6BA0280E-D055-4377-9D47-E39912C08B37}|src\\UserService\\UserService.csproj|solutionrelative:src\\userservice\\dto\\request\\role\\roleupdaterequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 151,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            }
+          ]
+        },
+        {
+          "DockedWidth": 151,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "User.cs",
+              "DocumentMoniker": "E:\\ChallengeAndPositivehabitTracker\\Challenge_And_Positive_HabitTracker\\HabitTrackerApp\\src\\UserService\\Models\\User.cs",
+              "RelativeDocumentMoniker": "src\\UserService\\Models\\User.cs",
+              "ToolTip": "E:\\ChallengeAndPositivehabitTracker\\Challenge_And_Positive_HabitTracker\\HabitTrackerApp\\src\\UserService\\Models\\User.cs",
+              "RelativeToolTip": "src\\UserService\\Models\\User.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-17T02:34:50.526Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Program.cs",
+              "DocumentMoniker": "E:\\ChallengeAndPositivehabitTracker\\Challenge_And_Positive_HabitTracker\\HabitTrackerApp\\src\\UserService\\Program.cs",
+              "RelativeDocumentMoniker": "src\\UserService\\Program.cs",
+              "ToolTip": "E:\\ChallengeAndPositivehabitTracker\\Challenge_And_Positive_HabitTracker\\HabitTrackerApp\\src\\UserService\\Program.cs",
+              "RelativeToolTip": "src\\UserService\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-17T02:24:29.785Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "RoleService.cs",
+              "DocumentMoniker": "E:\\ChallengeAndPositivehabitTracker\\Challenge_And_Positive_HabitTracker\\HabitTrackerApp\\src\\UserService\\Services\\ServiceRole\\RoleService.cs",
+              "RelativeDocumentMoniker": "src\\UserService\\Services\\ServiceRole\\RoleService.cs",
+              "ToolTip": "E:\\ChallengeAndPositivehabitTracker\\Challenge_And_Positive_HabitTracker\\HabitTrackerApp\\src\\UserService\\Services\\ServiceRole\\RoleService.cs",
+              "RelativeToolTip": "src\\UserService\\Services\\ServiceRole\\RoleService.cs",
+              "ViewState": "AgIAAE0AAAAAAAAAAAAswFgAAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-17T02:12:17.105Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "UserServices.cs",
+              "DocumentMoniker": "E:\\ChallengeAndPositivehabitTracker\\Challenge_And_Positive_HabitTracker\\HabitTrackerApp\\src\\UserService\\Services\\ServiceUser\\UserServices.cs",
+              "RelativeDocumentMoniker": "src\\UserService\\Services\\ServiceUser\\UserServices.cs",
+              "ToolTip": "E:\\ChallengeAndPositivehabitTracker\\Challenge_And_Positive_HabitTracker\\HabitTrackerApp\\src\\UserService\\Services\\ServiceUser\\UserServices.cs",
+              "RelativeToolTip": "src\\UserService\\Services\\ServiceUser\\UserServices.cs",
+              "ViewState": "AgIAAEEAAAAAAAAAAAAkwE4AAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-17T01:40:11.698Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "UserController.cs",
+              "DocumentMoniker": "E:\\ChallengeAndPositivehabitTracker\\Challenge_And_Positive_HabitTracker\\HabitTrackerApp\\src\\UserService\\Controllers\\UserController.cs",
+              "RelativeDocumentMoniker": "src\\UserService\\Controllers\\UserController.cs",
+              "ToolTip": "E:\\ChallengeAndPositivehabitTracker\\Challenge_And_Positive_HabitTracker\\HabitTrackerApp\\src\\UserService\\Controllers\\UserController.cs",
+              "RelativeToolTip": "src\\UserService\\Controllers\\UserController.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAzwBoAAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-17T01:38:29.956Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "RoleCreateRequest.cs",
+              "DocumentMoniker": "E:\\ChallengeAndPositivehabitTracker\\Challenge_And_Positive_HabitTracker\\HabitTrackerApp\\src\\UserService\\Dto\\Request\\Role\\RoleCreateRequest.cs",
+              "RelativeDocumentMoniker": "src\\UserService\\Dto\\Request\\Role\\RoleCreateRequest.cs",
+              "ToolTip": "E:\\ChallengeAndPositivehabitTracker\\Challenge_And_Positive_HabitTracker\\HabitTrackerApp\\src\\UserService\\Dto\\Request\\Role\\RoleCreateRequest.cs",
+              "RelativeToolTip": "src\\UserService\\Dto\\Request\\Role\\RoleCreateRequest.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAIAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-17T01:37:56.209Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "RoleUpdateRequest.cs",
+              "DocumentMoniker": "E:\\ChallengeAndPositivehabitTracker\\Challenge_And_Positive_HabitTracker\\HabitTrackerApp\\src\\UserService\\Dto\\Request\\Role\\RoleUpdateRequest.cs",
+              "RelativeDocumentMoniker": "src\\UserService\\Dto\\Request\\Role\\RoleUpdateRequest.cs",
+              "ToolTip": "E:\\ChallengeAndPositivehabitTracker\\Challenge_And_Positive_HabitTracker\\HabitTrackerApp\\src\\UserService\\Dto\\Request\\Role\\RoleUpdateRequest.cs",
+              "RelativeToolTip": "src\\UserService\\Dto\\Request\\Role\\RoleUpdateRequest.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-17T01:38:12.285Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "RoleController.cs",
+              "DocumentMoniker": "E:\\ChallengeAndPositivehabitTracker\\Challenge_And_Positive_HabitTracker\\HabitTrackerApp\\src\\UserService\\Controllers\\RoleController.cs",
+              "RelativeDocumentMoniker": "src\\UserService\\Controllers\\RoleController.cs",
+              "ToolTip": "E:\\ChallengeAndPositivehabitTracker\\Challenge_And_Positive_HabitTracker\\HabitTrackerApp\\src\\UserService\\Controllers\\RoleController.cs",
+              "RelativeToolTip": "src\\UserService\\Controllers\\RoleController.cs",
+              "ViewState": "AgIAACYAAAAAAAAAAAAgwC0AAABAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-17T01:20:16.402Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

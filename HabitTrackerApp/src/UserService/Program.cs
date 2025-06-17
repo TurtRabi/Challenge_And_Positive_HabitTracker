@@ -1,7 +1,22 @@
+using API_UsePrevention.Extensions;
+
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddControllers();
+
+
+builder.Services.AddDatabaseServices(builder.Configuration);
+
+builder.Services.AddRepositoryServices();
+
+builder.Services.AddAppServices();
+
+builder.Services.AddJwtAuthentication(builder.Configuration);
 
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+
+
+
+builder.Services.AddSwaggerWithJwt();
 
 builder.Services.AddCors(options =>
 {
@@ -22,5 +37,5 @@ app.UseSwaggerUI();
 
 app.RegisterWithConsul("userservice", 80);
 
-
+app.MapControllers();
 app.Run();

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("FriendshipService")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+dd8b82510f8fe1694222c36033adfa3278da061b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+67c86f9c0d5f87608e8153668531a9d012983d60")]
 [assembly: System.Reflection.AssemblyProductAttribute("FriendshipService")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FriendshipService")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
