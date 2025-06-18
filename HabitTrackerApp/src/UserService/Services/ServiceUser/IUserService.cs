@@ -17,10 +17,19 @@ namespace UserService.Services.ServiceUser
         Task<ServiceResult> UpdateUserById(Guid id, UserUpdateDto updateDto);
 
         Task<ServiceResult> ChangePassword(ChangePasswordDto changePasswordDto);
-        Task<ServiceResult> VerifyEmailOrPhone(VerifyDto verifyDto);
 
         Task<ServiceResult> DeleteUser(Guid id);
 
         Task<ServiceResult> ManageUserStatus(Guid id, string status);
+
+        Task<ServiceResult> SendEmailVerificationAsync(Guid userId);
+
+        Task<ServiceResult> VerifyEmailAsync(Guid userId, string code);
+
+        Task<ServiceResult> SendPhoneVerificationAsync(Guid userId);
+
+        Task<ServiceResult> VerifyPhoneAsync(Guid userId, string code);
+        Task<ServiceResult> Logout(Guid userId);
+        Task<ServiceResult> RefreshToken(Guid userId, string refreshToken);
     }
 }

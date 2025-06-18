@@ -5,6 +5,7 @@ services:
       - "8500:8500"
     networks:
       - habit-net
+
   sql_habit:
     image: mcr.microsoft.com/mssql/server:2022-latest
     container_name: sql_habit
@@ -30,7 +31,25 @@ services:
       - habit-net
     volumes:
       - mongo_data:/data/db
-  
+
+  redis:
+    image: redis:7
+    container_name: redis
+    ports:
+      - "6379:6379"
+    networks:
+      - habit-net
+
+  redis-insight:
+    image: redislabs/redisinsight:1.14.0
+    container_name: redis-insight
+    ports:
+      - "8001:8001"
+    networks:
+      - habit-net
+    depends_on:
+      - redis
+
   userservice:
     build: ./src/UserService
     container_name: userservice
@@ -42,6 +61,8 @@ services:
       - habit-net
     depends_on:
       - sql_habit
+      - redis
+
   teamservice:
     build: ./src/TeamService
     container_name: teamservice
@@ -53,6 +74,7 @@ services:
       - habit-net
     depends_on:
       - sql_habit
+
   taskservice:
     build: ./src/TaskService
     container_name: taskservice
@@ -64,6 +86,7 @@ services:
       - habit-net
     depends_on:
       - sql_habit
+
   stickerservice:
     build: ./src/StickerService
     container_name: stickerservice
@@ -75,6 +98,7 @@ services:
       - habit-net
     depends_on:
       - sql_habit
+
   shareservice:
     build: ./src/ShareService
     container_name: shareservice
@@ -86,6 +110,7 @@ services:
       - habit-net
     depends_on:
       - sql_habit
+
   proofservice:
     build: ./src/ProofService
     container_name: proofservice
@@ -97,6 +122,7 @@ services:
       - habit-net
     depends_on:
       - mongo_habit
+
   notificationservice:
     build: ./src/NotificationService
     container_name: notificationservice
@@ -108,6 +134,8 @@ services:
       - habit-net
     depends_on:
       - sql_habit
+      - redis
+
   leaderboardservice:
     build: ./src/LeaderboardService
     container_name: leaderboardservice
@@ -119,10 +147,10 @@ services:
       - habit-net
     depends_on:
       - sql_habit
+
   friendservice:
     build: ./src/FriendshipService
     container_name: friendservice
-    
     ports:
       - "5009:80"
     environment:
@@ -131,6 +159,7 @@ services:
       - habit-net
     depends_on:
       - sql_habit
+
   chatservice:
     build: ./src/ChatService
     container_name: chatservice
@@ -142,6 +171,7 @@ services:
       - habit-net
     depends_on:
       - mongo_habit
+
   assignmentservice:
     build: ./src/AssignmentService
     container_name: assignmentservice
@@ -153,6 +183,7 @@ services:
       - habit-net
     depends_on:
       - sql_habit
+
   apigateway:
     build: ./src/ApiGateway
     container_name: apigateway
@@ -164,8 +195,6 @@ services:
       - habit-net
     depends_on:
       - consul
-
-
 
   mongo-express:
     image: mongo-express
@@ -181,8 +210,6 @@ services:
       - mongo_habit
     networks:
       - habit-net
- 
-
 
 volumes:
   sql_data:
@@ -191,5 +218,3 @@ volumes:
 networks:
   habit-net:
     driver: bridge
-
-

@@ -7,7 +7,7 @@ namespace UserService.Repositories.UOW
     {
         IGenericRepository<User> user { get; }
         IGenericRepository<Role> role { get; }
-        IGenericRepository<UserProvider> user_provider { get; }
+        IGenericRepository<UserProvider> UserProvider { get; }
         Task<int> CommitAsync();
     }
 }

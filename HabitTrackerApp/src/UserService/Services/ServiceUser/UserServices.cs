@@ -1,5 +1,10 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 using UserService.Common;
 using UserService.Common.Enum;
 using UserService.Dto.Response;
@@ -7,6 +12,7 @@ using UserService.Dto.Role;
 using UserService.Dto.User;
 using UserService.Models;
 using UserService.Repositories.UOW;
+using UserService.Services.Redis;
 using UserService.Services.ServiceRole;
 
 namespace UserService.Services.ServiceUser
@@ -14,19 +20,66 @@ namespace UserService.Services.ServiceUser
     public class UserServices : IUserService
     {
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IRedisService _redisService;
+        private readonly JwtSettings _jwtSettings;
 
-        public UserServices(IUnitOfWork unitOfWork,IRoleService roleService)
+        public UserServices(IUnitOfWork unitOfWork, IRedisService redisService, IOptions<JwtSettings> jwtOptions)
         {
             _unitOfWork = unitOfWork;
+            _redisService = redisService;
+            _jwtSettings = jwtOptions.Value;
         }
-        public Task<ServiceResult> ChangePassword(ChangePasswordDto changePasswordDto)
+        public async Task<ServiceResult> ChangePassword(ChangePasswordDto changePasswordDto)
         {
-            throw new NotImplementedException();
+            var result = new ServiceResult();
+            var user = (await _unitOfWork.user.FindAnsyc(U=>U.Id ==changePasswordDto.UserId)).FirstOrDefault();
+            if (user == null)
+            {
+                result.Success = false;
+                result.Message = "User not found.";
+                return result;
+            }
+
+            var hasher = new PasswordHasher<object>();
+
+            var verificationResult = hasher.VerifyHashedPassword(null, user.PasswordHash,changePasswordDto.OldPassword);
+
+            if(verificationResult == PasswordVerificationResult.Failed)
+            {
+                result.Success = false;
+                result.Message = "Old password is incorrect.";
+                return result;
+            }
+
+            user.PasswordHash = hasher.HashPassword(null, changePasswordDto.NewPassword);
+            user.UpdatedAt = DateTime.UtcNow;
+
+            await _unitOfWork.user.UpdateAnsync(user);
+            await _unitOfWork.CommitAsync();
+
+            result.Success = true;
+            result.Message = "Password changed successfully.";
+            return result;
         }
 
-        public Task<ServiceResult> DeleteUser(Guid id)
+        public async Task<ServiceResult> DeleteUser(Guid id)
         {
-            throw new NotImplementedException();
+            var result = new ServiceResult();
+            var user = (await _unitOfWork.user.FindAnsyc(u=>u.Id == id)).FirstOrDefault();
+            if(user == null)
+            {
+                result.Success = false;
+                result.Message = "User not found.";
+                return result;
+            }
+
+            user.Status = UserStatus.Deleted.ToString();
+            await _unitOfWork.user.UpdateAnsync(user);
+            await _unitOfWork.CommitAsync();
+
+            result.Success = true;
+            result.Message = "User deleted successfully.";
+            return result;
         }
 
         public async Task<ServiceResult> GetUserById(Guid id)
@@ -64,14 +117,100 @@ namespace UserService.Services.ServiceUser
         }
 
 
-        public Task<ServiceResult> Login(UserLoginDto loginDto)
+        public async Task<ServiceResult> Login(UserLoginDto loginDto)
         {
-            throw new NotImplementedException();
+            var result = new ServiceResult();
+
+            var user = (await _unitOfWork.user.FindAnsyc(u => u.Username == loginDto.UserName)).FirstOrDefault();
+            if (user == null)
+            {
+                result.Success = false;
+                result.Message = "Invalid username or password.";
+                return result;
+            }
+
+            var hasher = new PasswordHasher<object>();
+            var verifyResult = hasher.VerifyHashedPassword(null, user.PasswordHash, loginDto.Password);
+            if (verifyResult == PasswordVerificationResult.Failed)
+            {
+                result.Success = false;
+                result.Message = "Invalid username or password.";
+                return result;
+            }
+
+            // Create Access Token
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var key = Encoding.UTF8.GetBytes(_jwtSettings.Key);
+            var claims = new[]
+            {
+        new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
+        new Claim(JwtRegisteredClaimNames.Email, user.Email),
+        new Claim("username", user.Username)
+    };
+
+            var tokenDescriptor = new SecurityTokenDescriptor
+            {
+                Subject = new ClaimsIdentity(claims),
+                NotBefore = DateTime.UtcNow,
+                Expires = DateTime.UtcNow.AddMinutes(_jwtSettings.ExpiresInMinutes),
+                Issuer = _jwtSettings.Issuer,
+                Audience = _jwtSettings.Audience,
+                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+            };
+
+            var token = tokenHandler.CreateToken(tokenDescriptor);
+            var accessToken = tokenHandler.WriteToken(token);
+
+            var refreshToken = Guid.NewGuid().ToString();
+            var accessKey = $"auth:token:{user.Id}";
+            var refreshKey = $"auth:refresh:{user.Id}";
+
+            var expireMinutes = Math.Max(1, _jwtSettings.ExpiresInMinutes);
+            await _redisService.SetAsync(accessKey, accessToken, TimeSpan.FromMinutes(expireMinutes));
+            await _redisService.SetAsync(refreshKey, refreshToken, TimeSpan.FromDays(7)); // tùy vào policy hệ thống
+
+            result.Success = true;
+            result.Message = "Login successful.";
+            result.Data = new
+            {
+                AccessToken = accessToken,
+                RefreshToken = refreshToken,
+                ExpiresIn = expireMinutes * 60
+            };
+
+            return result;
         }
 
-        public Task<ServiceResult> ManageUserStatus(Guid id, string status)
+
+
+        public async Task<ServiceResult> ManageUserStatus(Guid id, string status)
         {
-            throw new NotImplementedException();
+            var result = new ServiceResult();
+            var user = (await _unitOfWork.user.FindAnsyc(u=>u.Id == id)).FirstOrDefault();  
+
+            if(user == null)
+            {
+                result.Success = false;
+                result.Message = "User not found.";
+                return result;
+            }
+
+            if (!Enum.TryParse<UserStatus>(status, true, out var newStatus))
+            {
+                result.Success = false;
+                result.Message = "Invalid status value.";
+                return result;
+            }
+
+            user.Status = newStatus.ToString();
+            user.UpdatedAt = DateTime.Now;
+
+            await _unitOfWork.user.UpdateAnsync(user);
+            await _unitOfWork.CommitAsync();
+
+            result.Success = true;
+            result.Message = "User status updated.";
+            return result;
         }
 
         public async Task<ServiceResult> RegisterUser(UserCreateDto userDto)
@@ -151,14 +290,220 @@ namespace UserService.Services.ServiceUser
 
 
 
-        public Task<ServiceResult> UpdateUserById(Guid id, UserUpdateDto updateDto)
+        public async Task<ServiceResult> UpdateUserById(Guid id, UserUpdateDto updateDto)
         {
-            throw new NotImplementedException();
+            var result = new ServiceResult();
+
+            var user = (await _unitOfWork.user.FindAnsyc(u => u.Id == id)).FirstOrDefault();
+            if (user == null)
+            {
+                result.Success = false;
+                result.Message = "User not found.";
+                return result;
+            }
+
+            user.FullName = updateDto.FullName;
+            user.AvatarUrl = updateDto.AvatarUrl;
+            user.PhoneNumber = updateDto.PhoneNumber;
+            user.Gender = updateDto.Gender;
+            user.DateOfBirth = updateDto.DateOfBirth;
+            user.UpdatedAt = DateTime.UtcNow;
+
+            await _unitOfWork.user.UpdateAnsync(user);
+            await _unitOfWork.CommitAsync();
+
+            var updatedUser = new UserResponse
+            {
+                Id = user.Id,
+                Email = user.Email,
+                Username = user.Username,
+                Phone = user.PhoneNumber
+            };
+
+            result.Success = true;
+            result.Message = "User updated successfully.";
+            result.Data = updatedUser;
+
+            return result;
         }
 
-        public Task<ServiceResult> VerifyEmailOrPhone(VerifyDto verifyDto)
+
+        public async Task<ServiceResult> SendEmailVerificationAsync(Guid userId)
         {
-            throw new NotImplementedException();
+            var user = (await _unitOfWork.user.FindAnsyc(u => u.Id == userId)).FirstOrDefault();
+            if (user == null)
+                return new ServiceResult(false, "User not found");
+
+            var code = Generate6DigitCode();
+            var key = $"verify:email:{user.Email}";
+
+            await _redisService.SetAsync(key, code, TimeSpan.FromMinutes(10));
+
+            await SendEmailAsync(user.Email, "Email Verification Code", $"Your code is: {code}");
+
+            return new ServiceResult(true, "Verification code sent to email.");
+        }
+
+        public async Task<ServiceResult> VerifyEmailAsync(Guid userId, string code)
+        {
+            var user = (await _unitOfWork.user.FindAnsyc(u => u.Id == userId)).FirstOrDefault();
+            if (user == null)
+                return new ServiceResult(false, "User not found");
+
+            var key = $"verify:email:{user.Email}";
+            var storedCode = await _redisService.GetAsync(key);
+
+            if (storedCode == null || storedCode != code)
+                return new ServiceResult(false, "Invalid or expired code");
+
+            user.EmailVerified = true;
+            user.UpdatedAt = DateTime.UtcNow;
+            await _unitOfWork.user.UpdateAnsync(user);
+            await _unitOfWork.CommitAsync();
+
+            await _redisService.RemoveAsync(key);
+
+            return new ServiceResult(true, "Email verified successfully.");
+        }
+
+        public async Task<ServiceResult> SendPhoneVerificationAsync(Guid userId)
+        {
+            var user = (await _unitOfWork.user.FindAnsyc(u=>u.Id==userId)).FirstOrDefault();
+            if (user == null)
+                return new ServiceResult(false, "User not found");
+
+            if (string.IsNullOrWhiteSpace(user.PhoneNumber))
+                return new ServiceResult(false, "User does not have a phone number.");
+
+            var code = Generate6DigitCode();
+            var key = $"verify:phone:{user.PhoneNumber}";
+
+            await _redisService.SetAsync(key, code, TimeSpan.FromMinutes(10));
+
+            // Gửi SMS (ở đây bạn có thể thay thế bằng tích hợp thực tế như Twilio)
+            await SendSmsAsync(user.PhoneNumber, $"Your verification code is: {code}");
+
+            return new ServiceResult(true, "Verification code sent to phone.");
+        }
+
+        public async Task<ServiceResult> VerifyPhoneAsync(Guid userId, string code)
+        {
+            var user = (await _unitOfWork.user.FindAnsyc(u => u.Id == userId)).FirstOrDefault();
+            if (user == null)
+                return new ServiceResult(false, "User not found");
+
+            var key = $"verify:phone:{user.PhoneNumber}";
+            var storedCode = await _redisService.GetAsync(key);
+
+            if (storedCode == null || storedCode != code)
+                return new ServiceResult(false, "Invalid or expired code");
+
+            user.PhoneVerified = true;
+            user.UpdatedAt = DateTime.UtcNow;
+            await _unitOfWork.user.UpdateAnsync(user);
+            await _unitOfWork.CommitAsync();
+
+            await _redisService.RemoveAsync(key);
+
+            return new ServiceResult(true, "Phone verified successfully.");
+        }
+
+        private string Generate6DigitCode()
+        {
+            var random = new Random();
+            return random.Next(100000, 999999).ToString();
+        }
+
+
+        private Task SendEmailAsync(string toEmail, string subject, string body)
+        {
+            Console.WriteLine("------ MOCK EMAIL ------");
+            Console.WriteLine($"To: {toEmail}");
+            Console.WriteLine($"Subject: {subject}");
+            Console.WriteLine($"Body: {body}");
+            Console.WriteLine("------------------------");
+            return Task.CompletedTask;
+        }
+
+        private Task SendSmsAsync(string phoneNumber, string message)
+        {
+            Console.WriteLine("------ MOCK SMS ------");
+            Console.WriteLine($"To: {phoneNumber}");
+            Console.WriteLine($"Message: {message}");
+            Console.WriteLine("----------------------");
+            return Task.CompletedTask;
+        }
+
+        public async Task<ServiceResult> Logout(Guid userId)
+        {
+            var result = new ServiceResult();
+            var accessKey = $"auth:token:{userId}";
+            var refreshKey = $"auth:refresh:{userId}";
+
+            await _redisService.RemoveAsync(accessKey);
+            await _redisService.RemoveAsync(refreshKey);
+
+            result.Success = true;
+            result.Message = "Logout successful.";
+            return result;
+        }
+
+        public async Task<ServiceResult> RefreshToken(Guid userId, string refreshToken)
+        {
+            var result = new ServiceResult();
+            var redisRefreshKey = $"auth:refresh:{userId}";
+            var storedRefreshToken = await _redisService.GetAsync(redisRefreshKey);
+            if (storedRefreshToken == null || storedRefreshToken != refreshToken)
+            {
+                result.Success = false;
+                result.Message = "Invalid or expired refresh token.";
+                return result;
+            }
+
+            var user = (await _unitOfWork.user.FindAnsyc(u => u.Id == userId)).FirstOrDefault();
+
+            if(user == null)
+            {
+                result.Success = false;
+                result.Message = "User not found.";
+                return result;
+            }
+
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var key = Encoding.UTF8.GetBytes(_jwtSettings.Key);
+
+            var claims = new[]
+            {
+                new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
+                new Claim(JwtRegisteredClaimNames.Email, user.Email),
+                new Claim("username", user.Username)
+            };
+            var tokenDescriptor = new SecurityTokenDescriptor
+            {
+                Subject = new ClaimsIdentity(claims),
+                NotBefore = DateTime.UtcNow,
+                Expires = DateTime.UtcNow.AddMinutes(_jwtSettings.ExpiresInMinutes),
+                Issuer = _jwtSettings.Issuer,
+                Audience = _jwtSettings.Audience,
+                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+            };
+
+            var token = tokenHandler.CreateToken(tokenDescriptor);
+            var newAccessToken = tokenHandler.WriteToken(token);
+            var redisAccessKey = $"auth:token:{user.Id}";
+            var expireMinutes = Math.Max(1, _jwtSettings.ExpiresInMinutes);
+            await _redisService.SetAsync(redisAccessKey, newAccessToken, TimeSpan.FromMinutes(expireMinutes));
+
+
+            result.Success = true;
+            result.Message = "Token refreshed successfully.";
+            result.Data = new
+            {
+                Token = newAccessToken,
+                ExpiresIn = expireMinutes * 60
+            };
+
+            return result;
         }
     }
 }

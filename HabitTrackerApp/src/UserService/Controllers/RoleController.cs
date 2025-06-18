@@ -54,18 +54,18 @@ namespace UserService.Controllers
             return Ok(result);
         }
 
-        [HttpDelete("{userId}/role/{roleId}")]
-        public async Task<IActionResult> DeleteRoleForUser()
-        {
-            // TODO: Gỡ bỏ role khỏi user
-            return Ok();
-        }
-
         [HttpPost("{userId}/role/{roleId}")]
         public async Task<IActionResult> AddRoleForUser([FromRoute] Guid userId, [FromRoute] Guid roleId)
         {
-            // TODO: Thêm role cho user
-            return Ok();
+            var result = await roleService.AddRoleForUser(userId, roleId);
+            return Ok(result);
+        }
+
+        [HttpDelete("{userId}/role/{roleId}")]
+        public async Task<IActionResult> DeleteRoleForUser([FromRoute] Guid userId, [FromRoute] Guid roleId)
+        {
+            var result = await roleService.DeleteRoleForUser(userId, roleId);
+            return Ok(result);
         }
     }
 }

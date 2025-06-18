@@ -10,13 +10,13 @@ namespace UserService.Repositories.UOW
 
         public IGenericRepository<Role> role { get; }
 
-        public IGenericRepository<UserProvider> user_provider { get; }
+        public IGenericRepository<UserProvider> UserProvider { get; }
         public UnitOfWork(UserServiceContext context)
         {
             _context = context;
             user = new GenericRepository<User>(_context);
             role = new GenericRepository<Role>(_context);
-            user_provider = new GenericRepository<UserProvider>(_context);
+            UserProvider = new GenericRepository<UserProvider>(_context);
         }
 
         public Task<int> CommitAsync()

@@ -13,10 +13,42 @@ namespace UserService.Services.ServiceRole
             _unitOfWork = unitOfWork;
         }
 
-        public Task<ServiceResult> AddRoleForUser(Guid userId, Guid roleId)
+        public async Task<ServiceResult> AddRoleForUser(Guid userId, Guid roleId)
         {
-            throw new NotImplementedException();
+            var result = new ServiceResult();
+
+            var user = (await _unitOfWork.user.FindAnsyc(u => u.Id == userId)).FirstOrDefault();
+            if (user == null)
+            {
+                result.Success = false;
+                result.Message = "User not found.";
+                return result;
+            }
+
+            var role = (await _unitOfWork.role.FindAnsyc(r => r.Id == roleId)).FirstOrDefault();
+            if (role == null)
+            {
+                result.Success = false;
+                result.Message = "Role not found.";
+                return result;
+            }
+
+            if (user.Roles.Any(r => r.Id == roleId))
+            {
+                result.Success = false;
+                result.Message = "User already has this role.";
+                return result;
+            }
+
+            user.Roles.Add(role);
+            await _unitOfWork.user.UpdateAnsync(user);
+            await _unitOfWork.CommitAsync();
+
+            result.Success = true;
+            result.Message = "Role added to user successfully.";
+            return result;
         }
+
 
         public async Task<ServiceResult> CreateRole(RoleCreateDto dto)
         {
@@ -63,10 +95,35 @@ namespace UserService.Services.ServiceRole
 
         }
 
-        public Task<ServiceResult> DeleteRoleForUser(Guid userId, Guid roleId)
+        public async Task<ServiceResult> DeleteRoleForUser(Guid userId, Guid roleId)
         {
-            throw new NotImplementedException();
+            var result = new ServiceResult();
+
+            var user = (await _unitOfWork.user.FindAnsyc(u => u.Id == userId)).FirstOrDefault();
+            if (user == null)
+            {
+                result.Success = false;
+                result.Message = "User not found.";
+                return result;
+            }
+
+            var roleToRemove = user.Roles.FirstOrDefault(r => r.Id == roleId);
+            if (roleToRemove == null)
+            {
+                result.Success = false;
+                result.Message = "Role not assigned to user.";
+                return result;
+            }
+
+            user.Roles.Remove(roleToRemove);
+            await _unitOfWork.user.UpdateAnsync(user);
+            await _unitOfWork.CommitAsync();
+
+            result.Success = true;
+            result.Message = "Role removed from user successfully.";
+            return result;
         }
+
 
         public async Task<ServiceResult> GetListRole()
         {
