@@ -14,6 +14,7 @@ using UserService.Models;
 using UserService.Repositories.UOW;
 using UserService.Services.Redis;
 using UserService.Services.ServiceRole;
+using UserService.Services.ServiceSendEmail;
 
 namespace UserService.Services.ServiceUser
 {
@@ -22,13 +23,16 @@ namespace UserService.Services.ServiceUser
         private readonly IUnitOfWork _unitOfWork;
         private readonly IRedisService _redisService;
         private readonly JwtSettings _jwtSettings;
+        private readonly IEmailService _emailService;
 
-        public UserServices(IUnitOfWork unitOfWork, IRedisService redisService, IOptions<JwtSettings> jwtOptions)
+        public UserServices(IUnitOfWork unitOfWork, IRedisService redisService, IOptions<JwtSettings> jwtOptions,IEmailService emailService)
         {
             _unitOfWork = unitOfWork;
             _redisService = redisService;
             _jwtSettings = jwtOptions.Value;
+            _emailService = emailService;
         }
+
         public async Task<ServiceResult> ChangePassword(ChangePasswordDto changePasswordDto)
         {
             var result = new ServiceResult();
@@ -143,10 +147,10 @@ namespace UserService.Services.ServiceUser
             var key = Encoding.UTF8.GetBytes(_jwtSettings.Key);
             var claims = new[]
             {
-        new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
-        new Claim(JwtRegisteredClaimNames.Email, user.Email),
-        new Claim("username", user.Username)
-    };
+                new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
+                new Claim(JwtRegisteredClaimNames.Email, user.Email),
+                new Claim("username", user.Username)
+            };
 
             var tokenDescriptor = new SecurityTokenDescriptor
             {
@@ -338,8 +342,7 @@ namespace UserService.Services.ServiceUser
             var key = $"verify:email:{user.Email}";
 
             await _redisService.SetAsync(key, code, TimeSpan.FromMinutes(10));
-
-            await SendEmailAsync(user.Email, "Email Verification Code", $"Your code is: {code}");
+            await _emailService.SendEmailAsync(user.Email, "Email Verification Code", $"Your code is: {code}");
 
             return new ServiceResult(true, "Verification code sent to email.");
         }
@@ -415,15 +418,6 @@ namespace UserService.Services.ServiceUser
         }
 
 
-        private Task SendEmailAsync(string toEmail, string subject, string body)
-        {
-            Console.WriteLine("------ MOCK EMAIL ------");
-            Console.WriteLine($"To: {toEmail}");
-            Console.WriteLine($"Subject: {subject}");
-            Console.WriteLine($"Body: {body}");
-            Console.WriteLine("------------------------");
-            return Task.CompletedTask;
-        }
 
         private Task SendSmsAsync(string phoneNumber, string message)
         {
@@ -503,6 +497,62 @@ namespace UserService.Services.ServiceUser
                 ExpiresIn = expireMinutes * 60
             };
 
+            return result;
+        }
+
+        public async Task<ServiceResult> GetUserByEmail(string Email)
+        {
+            var result = new ServiceResult();
+            var getUserByEmail = (await _unitOfWork.user.FindAnsyc(u => u.Email.Equals(Email))).FirstOrDefault();
+            if (getUserByEmail == null)
+            {
+                result.Success = true;
+                result.Message="User not found";
+
+                return result;
+            }
+            var userDto = new UserWithRolesRequest
+            {
+                Id = getUserByEmail.Id,
+                Email = getUserByEmail.Email,
+                Username = getUserByEmail.Username,
+                Phone = getUserByEmail.PhoneNumber,
+                Roles = getUserByEmail.Roles.Select(r => new RoleDto
+                {
+                    Id = r.Id,
+                    Name = r.Name
+                }).ToList()
+            };
+
+
+            result.Success= true;
+            result.Data = userDto;
+
+            return result;
+        }
+
+        public async Task<ServiceResult> ChangeNewPassword(Guid id,string newPassword)
+        {
+            var result = new ServiceResult();
+            var user = (await _unitOfWork.user.FindAnsyc(U => U.Id == id)).FirstOrDefault();
+            if (user == null)
+            {
+                result.Success = false;
+                result.Message = "User not found.";
+                return result;
+            }
+
+            var hasher = new PasswordHasher<object>();
+
+
+            user.PasswordHash = hasher.HashPassword(null, newPassword);
+            user.UpdatedAt = DateTime.UtcNow;
+
+            await _unitOfWork.user.UpdateAnsync(user);
+            await _unitOfWork.CommitAsync();
+
+            result.Success = true;
+            result.Message = "Password changed successfully.";
             return result;
         }
     }

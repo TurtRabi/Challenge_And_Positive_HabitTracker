@@ -112,12 +112,9 @@ namespace UserService.Services.UserProviderService
         public async Task<ServiceResult> SocialLoginAsync(string provider, string accessToken, string clientType)
         {
             string clientId;
-            if(clientType == "web")
+            if (clientType == "web" || clientType == "mobile")
             {
-                clientId = _authSettings.WebClientId;
-            }else if(clientType == "mobile")
-            {
-                clientId= _authSettings.MobileClientId;
+                clientId = _authSettings.WebClientId; // Luôn Web Client ID!
             }
             else
             {
@@ -143,6 +140,7 @@ namespace UserService.Services.UserProviderService
             }
             else
             {
+                var role = (await _unitOfWork.role.FindAnsyc(c => c.Name.Equals("user"))).FirstOrDefault();
                 var newUser = new User
                 {
                     Id = Guid.NewGuid(),
@@ -151,7 +149,8 @@ namespace UserService.Services.UserProviderService
                     CreatedAt = DateTime.UtcNow,
                     UpdatedAt = DateTime.UtcNow,
                     Status = UserStatus.Active.ToString(),
-                    EmailVerified = true
+                    EmailVerified = true,
+                    Roles = {role}
                 };
 
                 await _unitOfWork.user.AddAnsync(newUser);

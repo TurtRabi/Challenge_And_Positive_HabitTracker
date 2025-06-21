@@ -2,14 +2,15 @@
   "ExpandedNodes": [
     "",
     "\\src",
+    "\\src\\ApiGateway",
     "\\src\\UserService",
-    "\\src\\UserService\\Controllers",
-    "\\src\\UserService\\Models",
-    "\\src\\UserService\\Repositories",
-    "\\src\\UserService\\Repositories\\UOW",
+    "\\src\\UserService\\Dto",
+    "\\src\\UserService\\Dto\\Request",
+    "\\src\\UserService\\Dto\\Request\\User",
     "\\src\\UserService\\Services",
-    "\\src\\UserService\\Services\\ServiceRole",
-    "\\src\\UserService\\Services\\ServiceUser"
+    "\\src\\UserService\\Services\\ServiceUser",
+    "\\src\\UserService\\Services\\UserProviderService"
   ],
+  "SelectedNode": "\\src\\ApiGateway\\ApiGateway.csproj",
   "PreviewInSolutionExplorer": false
 }

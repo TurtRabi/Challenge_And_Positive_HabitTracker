@@ -31,5 +31,7 @@ namespace UserService.Services.ServiceUser
         Task<ServiceResult> VerifyPhoneAsync(Guid userId, string code);
         Task<ServiceResult> Logout(Guid userId);
         Task<ServiceResult> RefreshToken(Guid userId, string refreshToken);
+        Task<ServiceResult> GetUserByEmail(string Email);
+        Task<ServiceResult> ChangeNewPassword(Guid userId,string newPassword);
     }
 }

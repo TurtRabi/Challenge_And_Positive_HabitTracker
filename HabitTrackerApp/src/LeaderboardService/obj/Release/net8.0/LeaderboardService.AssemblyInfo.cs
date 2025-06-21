@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("LeaderboardService")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+67c86f9c0d5f87608e8153668531a9d012983d60")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9af92aa0d2d207b0ac32d6c49ec27a1c4d0f5048")]
 [assembly: System.Reflection.AssemblyProductAttribute("LeaderboardService")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LeaderboardService")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

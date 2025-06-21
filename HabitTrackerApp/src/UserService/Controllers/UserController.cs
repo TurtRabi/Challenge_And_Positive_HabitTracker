@@ -50,6 +50,13 @@ namespace UserService.Controllers
             return Ok(result);
         }
 
+        [HttpGet("getUserByEmail/{email}")]
+        public async Task<IActionResult> GetUserByEmail([FromRoute] string email)
+        {
+            var result = await _userService.GetUserByEmail(email);
+            return Ok(result);
+        }
+
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateUserById([FromRoute] Guid id, [FromBody] UserUpdateDto updateDto)
         {
@@ -116,6 +123,12 @@ namespace UserService.Controllers
         public async Task<IActionResult> RefreshToken([FromRoute] Guid id, [FromQuery] string refreshToken)
         {
             var result = await _userService.RefreshToken(id, refreshToken);
+            return Ok(result);
+        }
+        [HttpPost("change-password/{id}/{newPassword}")]
+        public async Task<IActionResult> ChangeNewPassword([FromRoute] Guid id,[FromRoute] string newPassword)
+        {
+            var result = await _userService.ChangeNewPassword(id,newPassword);
             return Ok(result);
         }
     }
