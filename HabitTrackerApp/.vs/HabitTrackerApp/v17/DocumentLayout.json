@@ -3,6 +3,14 @@
   "WorkspaceRootPath": "E:\\ChallengeAndPositivehabitTracker\\Challenge_And_Positive_HabitTracker\\HabitTrackerApp\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\ChallengeAndPositivehabitTracker\\Challenge_And_Positive_HabitTracker\\HabitTrackerApp\\src\\UserService\\Services\\ServiceUser\\UserServices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\UserService\\Services\\ServiceUser\\UserServices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\ChallengeAndPositivehabitTracker\\Challenge_And_Positive_HabitTracker\\HabitTrackerApp\\src\\UserService\\Controllers\\UserController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\UserService\\Controllers\\UserController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\ChallengeAndPositivehabitTracker\\Challenge_And_Positive_HabitTracker\\HabitTrackerApp\\src\\ApiGateway\\ApiGateway.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\ApiGateway\\ApiGateway.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
     },
@@ -11,16 +19,20 @@
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\ApiGateway\\ApiGateway.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\ChallengeAndPositivehabitTracker\\Challenge_And_Positive_HabitTracker\\HabitTrackerApp\\src\\ApiGateway\\appsettings.Development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\ApiGateway\\appsettings.Development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\ChallengeAndPositivehabitTracker\\Challenge_And_Positive_HabitTracker\\HabitTrackerApp\\src\\UserService\\Services\\ServiceUser\\IUserService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\UserService\\Services\\ServiceUser\\IUserService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\ChallengeAndPositivehabitTracker\\Challenge_And_Positive_HabitTracker\\HabitTrackerApp\\src\\UserService\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\UserService\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\ChallengeAndPositivehabitTracker\\Challenge_And_Positive_HabitTracker\\HabitTrackerApp\\src\\ApiGateway\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\ApiGateway\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\ChallengeAndPositivehabitTracker\\Challenge_And_Positive_HabitTracker\\HabitTrackerApp\\src\\ApiGateway\\appsettings.Development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\ApiGateway\\appsettings.Development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\ChallengeAndPositivehabitTracker\\Challenge_And_Positive_HabitTracker\\HabitTrackerApp\\src\\ApiGateway\\ocelot.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
@@ -37,18 +49,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\ChallengeAndPositivehabitTracker\\Challenge_And_Positive_HabitTracker\\HabitTrackerApp\\src\\UserService\\Dto\\Request\\User\\RegisterUserRequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\UserService\\Dto\\Request\\User\\RegisterUserRequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\ChallengeAndPositivehabitTracker\\Challenge_And_Positive_HabitTracker\\HabitTrackerApp\\src\\UserService\\Controllers\\UserController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\UserService\\Controllers\\UserController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\ChallengeAndPositivehabitTracker\\Challenge_And_Positive_HabitTracker\\HabitTrackerApp\\src\\UserService\\Services\\ServiceUser\\UserServices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\UserService\\Services\\ServiceUser\\UserServices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\ChallengeAndPositivehabitTracker\\Challenge_And_Positive_HabitTracker\\HabitTrackerApp\\src\\UserService\\Services\\ServiceUser\\IUserService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\UserService\\Services\\ServiceUser\\IUserService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\ChallengeAndPositivehabitTracker\\Challenge_And_Positive_HabitTracker\\HabitTrackerApp\\src\\UserService\\Services\\ServiceRole\\RoleService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -70,7 +70,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 151,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -78,27 +78,52 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "E:\\ChallengeAndPositivehabitTracker\\Challenge_And_Positive_HabitTracker\\HabitTrackerApp\\src\\UserService\\appsettings.json",
-              "RelativeDocumentMoniker": "src\\UserService\\appsettings.json",
-              "ToolTip": "E:\\ChallengeAndPositivehabitTracker\\Challenge_And_Positive_HabitTracker\\HabitTrackerApp\\src\\UserService\\appsettings.json",
-              "RelativeToolTip": "src\\UserService\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAABnAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-06-20T15:22:13.634Z"
+              "DocumentIndex": 3,
+              "Title": "ApiGateway.http",
+              "DocumentMoniker": "E:\\ChallengeAndPositivehabitTracker\\Challenge_And_Positive_HabitTracker\\HabitTrackerApp\\src\\ApiGateway\\ApiGateway.http",
+              "RelativeDocumentMoniker": "src\\ApiGateway\\ApiGateway.http",
+              "ToolTip": "E:\\ChallengeAndPositivehabitTracker\\Challenge_And_Positive_HabitTracker\\HabitTrackerApp\\src\\ApiGateway\\ApiGateway.http",
+              "RelativeToolTip": "src\\ApiGateway\\ApiGateway.http",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003502|",
+              "WhenOpened": "2025-06-20T14:46:13.884Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "E:\\ChallengeAndPositivehabitTracker\\Challenge_And_Positive_HabitTracker\\HabitTrackerApp\\src\\ApiGateway\\appsettings.json",
-              "RelativeDocumentMoniker": "src\\ApiGateway\\appsettings.json",
-              "ToolTip": "E:\\ChallengeAndPositivehabitTracker\\Challenge_And_Positive_HabitTracker\\HabitTrackerApp\\src\\ApiGateway\\appsettings.json",
-              "RelativeToolTip": "src\\ApiGateway\\appsettings.json",
+              "DocumentIndex": 2,
+              "Title": "ApiGateway.csproj",
+              "DocumentMoniker": "E:\\ChallengeAndPositivehabitTracker\\Challenge_And_Positive_HabitTracker\\HabitTrackerApp\\src\\ApiGateway\\ApiGateway.csproj",
+              "RelativeDocumentMoniker": "src\\ApiGateway\\ApiGateway.csproj",
+              "ToolTip": "E:\\ChallengeAndPositivehabitTracker\\Challenge_And_Positive_HabitTracker\\HabitTrackerApp\\src\\ApiGateway\\ApiGateway.csproj",
+              "RelativeToolTip": "src\\ApiGateway\\ApiGateway.csproj",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-06-20T14:46:15.908Z"
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-06-20T14:46:12.4Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "UserServices.cs",
+              "DocumentMoniker": "E:\\ChallengeAndPositivehabitTracker\\Challenge_And_Positive_HabitTracker\\HabitTrackerApp\\src\\UserService\\Services\\ServiceUser\\UserServices.cs",
+              "RelativeDocumentMoniker": "src\\UserService\\Services\\ServiceUser\\UserServices.cs",
+              "ToolTip": "E:\\ChallengeAndPositivehabitTracker\\Challenge_And_Positive_HabitTracker\\HabitTrackerApp\\src\\UserService\\Services\\ServiceUser\\UserServices.cs",
+              "RelativeToolTip": "src\\UserService\\Services\\ServiceUser\\UserServices.cs",
+              "ViewState": "AgIAAGgAAAAAAAAAAAAkwNkBAABFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-18T08:39:37.761Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "UserController.cs",
+              "DocumentMoniker": "E:\\ChallengeAndPositivehabitTracker\\Challenge_And_Positive_HabitTracker\\HabitTrackerApp\\src\\UserService\\Controllers\\UserController.cs",
+              "RelativeDocumentMoniker": "src\\UserService\\Controllers\\UserController.cs",
+              "ToolTip": "E:\\ChallengeAndPositivehabitTracker\\Challenge_And_Positive_HabitTracker\\HabitTrackerApp\\src\\UserService\\Controllers\\UserController.cs",
+              "RelativeToolTip": "src\\UserService\\Controllers\\UserController.cs",
+              "ViewState": "AgIAAG8AAAAAAAAAAAAAwIgAAABKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-15T08:43:14.449Z"
             },
             {
               "$type": "Document",
@@ -114,32 +139,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "ApiGateway.http",
-              "DocumentMoniker": "E:\\ChallengeAndPositivehabitTracker\\Challenge_And_Positive_HabitTracker\\HabitTrackerApp\\src\\ApiGateway\\ApiGateway.http",
-              "RelativeDocumentMoniker": "src\\ApiGateway\\ApiGateway.http",
-              "ToolTip": "E:\\ChallengeAndPositivehabitTracker\\Challenge_And_Positive_HabitTracker\\HabitTrackerApp\\src\\ApiGateway\\ApiGateway.http",
-              "RelativeToolTip": "src\\ApiGateway\\ApiGateway.http",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003502|",
-              "WhenOpened": "2025-06-20T14:46:13.884Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "ApiGateway.csproj",
-              "DocumentMoniker": "E:\\ChallengeAndPositivehabitTracker\\Challenge_And_Positive_HabitTracker\\HabitTrackerApp\\src\\ApiGateway\\ApiGateway.csproj",
-              "RelativeDocumentMoniker": "src\\ApiGateway\\ApiGateway.csproj",
-              "ToolTip": "E:\\ChallengeAndPositivehabitTracker\\Challenge_And_Positive_HabitTracker\\HabitTrackerApp\\src\\ApiGateway\\ApiGateway.csproj",
-              "RelativeToolTip": "src\\ApiGateway\\ApiGateway.csproj",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-06-20T14:46:12.4Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 9,
               "Title": "Dockerfile",
               "DocumentMoniker": "E:\\ChallengeAndPositivehabitTracker\\Challenge_And_Positive_HabitTracker\\HabitTrackerApp\\src\\ApiGateway\\Dockerfile",
               "RelativeDocumentMoniker": "src\\ApiGateway\\Dockerfile",
@@ -151,7 +151,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 10,
               "Title": "Program.cs",
               "DocumentMoniker": "E:\\ChallengeAndPositivehabitTracker\\Challenge_And_Positive_HabitTracker\\HabitTrackerApp\\src\\ApiGateway\\Program.cs",
               "RelativeDocumentMoniker": "src\\ApiGateway\\Program.cs",
@@ -163,7 +163,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 8,
               "Title": "ocelot.json",
               "DocumentMoniker": "E:\\ChallengeAndPositivehabitTracker\\Challenge_And_Positive_HabitTracker\\HabitTrackerApp\\src\\ApiGateway\\ocelot.json",
               "RelativeDocumentMoniker": "src\\ApiGateway\\ocelot.json",
@@ -175,19 +175,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "UserServices.cs",
-              "DocumentMoniker": "E:\\ChallengeAndPositivehabitTracker\\Challenge_And_Positive_HabitTracker\\HabitTrackerApp\\src\\UserService\\Services\\ServiceUser\\UserServices.cs",
-              "RelativeDocumentMoniker": "src\\UserService\\Services\\ServiceUser\\UserServices.cs",
-              "ToolTip": "E:\\ChallengeAndPositivehabitTracker\\Challenge_And_Positive_HabitTracker\\HabitTrackerApp\\src\\UserService\\Services\\ServiceUser\\UserServices.cs",
-              "RelativeToolTip": "src\\UserService\\Services\\ServiceUser\\UserServices.cs",
-              "ViewState": "AgIAACAAAAAAAAAAAAAAAEYAAAAnAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-18T08:39:37.761Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 11,
               "Title": "RegisterUserRequest.cs",
               "DocumentMoniker": "E:\\ChallengeAndPositivehabitTracker\\Challenge_And_Positive_HabitTracker\\HabitTrackerApp\\src\\UserService\\Dto\\Request\\User\\RegisterUserRequest.cs",
               "RelativeDocumentMoniker": "src\\UserService\\Dto\\Request\\User\\RegisterUserRequest.cs",
@@ -196,6 +184,42 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAHAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-17T12:25:33.519Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "IUserService.cs",
+              "DocumentMoniker": "E:\\ChallengeAndPositivehabitTracker\\Challenge_And_Positive_HabitTracker\\HabitTrackerApp\\src\\UserService\\Services\\ServiceUser\\IUserService.cs",
+              "RelativeDocumentMoniker": "src\\UserService\\Services\\ServiceUser\\IUserService.cs",
+              "ToolTip": "E:\\ChallengeAndPositivehabitTracker\\Challenge_And_Positive_HabitTracker\\HabitTrackerApp\\src\\UserService\\Services\\ServiceUser\\IUserService.cs",
+              "RelativeToolTip": "src\\UserService\\Services\\ServiceUser\\IUserService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-15T08:43:26.083Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "E:\\ChallengeAndPositivehabitTracker\\Challenge_And_Positive_HabitTracker\\HabitTrackerApp\\src\\ApiGateway\\appsettings.json",
+              "RelativeDocumentMoniker": "src\\ApiGateway\\appsettings.json",
+              "ToolTip": "E:\\ChallengeAndPositivehabitTracker\\Challenge_And_Positive_HabitTracker\\HabitTrackerApp\\src\\ApiGateway\\appsettings.json",
+              "RelativeToolTip": "src\\ApiGateway\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-06-20T14:46:15.908Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "E:\\ChallengeAndPositivehabitTracker\\Challenge_And_Positive_HabitTracker\\HabitTrackerApp\\src\\UserService\\appsettings.json",
+              "RelativeDocumentMoniker": "src\\UserService\\appsettings.json",
+              "ToolTip": "E:\\ChallengeAndPositivehabitTracker\\Challenge_And_Positive_HabitTracker\\HabitTrackerApp\\src\\UserService\\appsettings.json",
+              "RelativeToolTip": "src\\UserService\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAABnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-06-20T15:22:13.634Z"
             },
             {
               "$type": "Document",
@@ -208,30 +232,6 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-17T12:25:01.742Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "UserController.cs",
-              "DocumentMoniker": "E:\\ChallengeAndPositivehabitTracker\\Challenge_And_Positive_HabitTracker\\HabitTrackerApp\\src\\UserService\\Controllers\\UserController.cs",
-              "RelativeDocumentMoniker": "src\\UserService\\Controllers\\UserController.cs",
-              "ToolTip": "E:\\ChallengeAndPositivehabitTracker\\Challenge_And_Positive_HabitTracker\\HabitTrackerApp\\src\\UserService\\Controllers\\UserController.cs",
-              "RelativeToolTip": "src\\UserService\\Controllers\\UserController.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAABMAAABUAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-15T08:43:14.449Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "IUserService.cs",
-              "DocumentMoniker": "E:\\ChallengeAndPositivehabitTracker\\Challenge_And_Positive_HabitTracker\\HabitTrackerApp\\src\\UserService\\Services\\ServiceUser\\IUserService.cs",
-              "RelativeDocumentMoniker": "src\\UserService\\Services\\ServiceUser\\IUserService.cs",
-              "ToolTip": "E:\\ChallengeAndPositivehabitTracker\\Challenge_And_Positive_HabitTracker\\HabitTrackerApp\\src\\UserService\\Services\\ServiceUser\\IUserService.cs",
-              "RelativeToolTip": "src\\UserService\\Services\\ServiceUser\\IUserService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-15T08:43:26.083Z"
             },
             {
               "$type": "Document",

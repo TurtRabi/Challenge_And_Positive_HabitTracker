@@ -1,4 +1,5 @@
-﻿using Consul;
+﻿using Azure.Core;
+using Consul;
 using Google.Apis.Auth;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
@@ -98,12 +99,17 @@ namespace UserService.Services.UserProviderService
 
             var token = tokenHandler.CreateToken(tokenDescriptor);
             var tokenString = tokenHandler.WriteToken(token);
+            var refreshToken = Guid.NewGuid().ToString();
 
             var redisKey = $"auth:token:{user.Id}";
+            var refreshKey = $"auth:refresh:{user.Id}";
             await _redisService.SetAsync(redisKey, tokenString, TimeSpan.FromMinutes(_jwtSettings.ExpiresInMinutes));
+            await _redisService.SetAsync(refreshKey, refreshToken, TimeSpan.FromDays(7));
 
             return new
             {
+                RefreshToken = refreshToken,
+                IDUser = user.Id,
                 Token = tokenString,
                 ExpiresIn = _jwtSettings.ExpiresInMinutes * 60
             };
@@ -168,7 +174,23 @@ namespace UserService.Services.UserProviderService
                 await _unitOfWork.CommitAsync();
 
                 var newToken = await GenerateJwtForUser(newUser);
-                return new ServiceResult(true, "Social login success (new user)", newToken);
+                var expireMinutes = Math.Max(1, _jwtSettings.ExpiresInMinutes);
+                var refreshToken = Guid.NewGuid().ToString();
+
+                var accessKey = $"auth:token:{userProvider.UserId}";
+                var refreshKey = $"auth:refresh:{userProvider.UserId}";
+
+                await _redisService.SetAsync(accessKey, accessToken, TimeSpan.FromMinutes(expireMinutes));
+                await _redisService.SetAsync(refreshKey, refreshToken, TimeSpan.FromDays(7));
+
+
+                return new ServiceResult(true, "Social login success (new user)", new
+                {
+                    AccessToken = newToken,
+                    RefreshToken = refreshToken,
+                    IDUser = userProvider.UserId,
+                    ExpiresIn = expireMinutes * 60
+                });
 
             }
         }

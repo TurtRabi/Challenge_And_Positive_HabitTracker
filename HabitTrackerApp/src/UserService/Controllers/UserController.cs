@@ -131,5 +131,11 @@ namespace UserService.Controllers
             var result = await _userService.ChangeNewPassword(id,newPassword);
             return Ok(result);
         }
+        [HttpGet("me")]
+        public async Task<IActionResult> GetCurrentUser()
+        {
+            var result = await _userService.GetCurrentUserFromToken(User);
+            return Ok(result);
+        }
     }
 }

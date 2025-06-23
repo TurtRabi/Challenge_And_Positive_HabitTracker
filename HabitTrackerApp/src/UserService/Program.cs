@@ -1,6 +1,7 @@
 using API_UsePrevention.Extensions;
 using UserService.Common;
 using UserService.Dto.Email;
+using UserService.Middlewares;
 using UserService.Services.ServiceSendEmail;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -36,6 +37,7 @@ builder.Services.AddCors(options =>
 });
 
 var app = builder.Build();
+app.UseMiddleware<TokenRefreshMiddleware>();
 
 app.UseCors("AllowAll");
 

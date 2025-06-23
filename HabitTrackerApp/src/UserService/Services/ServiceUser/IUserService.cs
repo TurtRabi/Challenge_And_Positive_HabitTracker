@@ -3,6 +3,8 @@ using UserService.Dto;
 using System;
 using System.Threading.Tasks;
 using UserService.Dto.User;
+using System.Security.Claims;
+
 
 namespace UserService.Services.ServiceUser
 {
@@ -33,5 +35,7 @@ namespace UserService.Services.ServiceUser
         Task<ServiceResult> RefreshToken(Guid userId, string refreshToken);
         Task<ServiceResult> GetUserByEmail(string Email);
         Task<ServiceResult> ChangeNewPassword(Guid userId,string newPassword);
+        Task<ServiceResult> GetCurrentUserFromToken(ClaimsPrincipal user);
+
     }
 }

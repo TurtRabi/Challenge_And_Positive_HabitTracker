@@ -1,16 +1,8 @@
 {
   "ExpandedNodes": [
-    "",
     "\\src",
     "\\src\\ApiGateway",
-    "\\src\\UserService",
-    "\\src\\UserService\\Dto",
-    "\\src\\UserService\\Dto\\Request",
-    "\\src\\UserService\\Dto\\Request\\User",
-    "\\src\\UserService\\Services",
-    "\\src\\UserService\\Services\\ServiceUser",
-    "\\src\\UserService\\Services\\UserProviderService"
+    "\\src\\UserService"
   ],
-  "SelectedNode": "\\src\\ApiGateway\\ApiGateway.csproj",
   "PreviewInSolutionExplorer": false
 }

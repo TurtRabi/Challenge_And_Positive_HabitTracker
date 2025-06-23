@@ -148,6 +148,7 @@ namespace UserService.Services.ServiceUser
             var claims = new[]
             {
                 new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
+                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
                 new Claim(JwtRegisteredClaimNames.Email, user.Email),
                 new Claim("username", user.Username)
             };
@@ -171,7 +172,7 @@ namespace UserService.Services.ServiceUser
 
             var expireMinutes = Math.Max(1, _jwtSettings.ExpiresInMinutes);
             await _redisService.SetAsync(accessKey, accessToken, TimeSpan.FromMinutes(expireMinutes));
-            await _redisService.SetAsync(refreshKey, refreshToken, TimeSpan.FromDays(7)); // tùy vào policy hệ thống
+            await _redisService.SetAsync(refreshKey, refreshToken, TimeSpan.FromDays(7));
 
             result.Success = true;
             result.Message = "Login successful.";
@@ -179,6 +180,7 @@ namespace UserService.Services.ServiceUser
             {
                 AccessToken = accessToken,
                 RefreshToken = refreshToken,
+                IDUser = user.Id,
                 ExpiresIn = expireMinutes * 60
             };
 
@@ -555,5 +557,46 @@ namespace UserService.Services.ServiceUser
             result.Message = "Password changed successfully.";
             return result;
         }
+
+        public async Task<ServiceResult> GetCurrentUserFromToken(ClaimsPrincipal user)
+        {
+            try
+            {
+                var userIdClaim = user.FindFirst(ClaimTypes.NameIdentifier);
+                if (userIdClaim == null)
+                    return new ServiceResult(false, "User ID not found in token");
+
+                var userId = Guid.Parse(userIdClaim.Value);
+
+                var userData = _unitOfWork.user.Query()
+                .Include(x => x.Roles)
+                .FirstOrDefault(u => u.Id == userId);
+
+
+
+                if (userData == null)
+                    return new ServiceResult(false, "User not found");
+
+                var userDto = new UserWithRolesRequest
+                {
+                    Id = userData.Id,
+                    Email = userData.Email,
+                    Username = userData.Username,
+                    Phone = userData.PhoneNumber,
+                    Roles = userData.Roles.Select(ur => new RoleDto
+                    {
+                        Id = ur.Id,
+                        Name = ur.Name
+                    }).ToList()
+                };
+
+                return new ServiceResult(true, "User information", userDto);
+            }
+            catch (Exception ex)
+            {
+                return new ServiceResult(false, "Error: " + ex.Message);
+            }
+        }
+
     }
 }
