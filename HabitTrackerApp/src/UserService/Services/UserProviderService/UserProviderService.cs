@@ -1,6 +1,7 @@
 ﻿using Azure.Core;
 using Consul;
 using Google.Apis.Auth;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.ComponentModel.DataAnnotations;
@@ -80,12 +81,18 @@ namespace UserService.Services.UserProviderService
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.UTF8.GetBytes(_jwtSettings.Key);
 
-            var claims = new[]
+            var getUserById = _unitOfWork.user.Query()
+               .Include(x => x.Roles)
+               .FirstOrDefault(u => u.Id == user.Id);
+
+            var claims = new List<Claim>()
             {
                 new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
                 new Claim(JwtRegisteredClaimNames.Email, user.Email),
                 new Claim("username", user.Username)
             };
+
+            claims.AddRange(getUserById.Roles.Select(r => new Claim(ClaimTypes.Role, r.Name)));
 
             var tokenDescriptor = new SecurityTokenDescriptor
             {
@@ -120,16 +127,22 @@ namespace UserService.Services.UserProviderService
             string clientId;
             if (clientType == "web" || clientType == "mobile")
             {
-                clientId = _authSettings.WebClientId; // Luôn Web Client ID!
+                clientId = _authSettings.WebClientId;
             }
             else
             {
                 return new ServiceResult(false, "Invalid client type");
             }
+
             var payload = await GoogleJsonWebSignature.ValidateAsync(accessToken, new GoogleJsonWebSignature.ValidationSettings
             {
                 Audience = new[] { clientId }
             });
+
+            if (string.IsNullOrWhiteSpace(payload.Email))
+            {
+                return new ServiceResult(false, "Google account does not provide email");
+            }
 
             var existingUserProvider = (await _unitOfWork.UserProvider.FindAnsyc(
                 up => up.Provider == provider && up.ProviderUserId == payload.Subject
@@ -147,16 +160,28 @@ namespace UserService.Services.UserProviderService
             else
             {
                 var role = (await _unitOfWork.role.FindAnsyc(c => c.Name.Equals("user"))).FirstOrDefault();
+
+                // Generate unique username
+                var baseUsername = payload.Email.Split('@')[0];
+
+                var username = baseUsername;
+                int counter = 1;
+                while (_unitOfWork.user.Query().Any(u => u.Username == username))
+                {
+                    username = $"{baseUsername}{counter++}";
+                }
+
                 var newUser = new User
                 {
                     Id = Guid.NewGuid(),
                     Email = payload.Email,
-                    Username = payload.Email.Split('@')[0],
+                    Username = username,
+                    PhoneNumber="0000000000",
                     CreatedAt = DateTime.UtcNow,
                     UpdatedAt = DateTime.UtcNow,
                     Status = UserStatus.Active.ToString(),
                     EmailVerified = true,
-                    Roles = {role}
+                    Roles = { role }
                 };
 
                 await _unitOfWork.user.AddAnsync(newUser);
@@ -173,27 +198,27 @@ namespace UserService.Services.UserProviderService
                 await _unitOfWork.UserProvider.AddAnsync(userProvider);
                 await _unitOfWork.CommitAsync();
 
-                var newToken = await GenerateJwtForUser(newUser);
-                var expireMinutes = Math.Max(1, _jwtSettings.ExpiresInMinutes);
-                var refreshToken = Guid.NewGuid().ToString();
+                var jwtToken = await GenerateJwtForUser(newUser);
+                var accessTokenString = ((dynamic)jwtToken).Token;
+                var refreshToken = ((dynamic)jwtToken).RefreshToken;
+                var expiresIn = ((dynamic)jwtToken).ExpiresIn;
 
-                var accessKey = $"auth:token:{userProvider.UserId}";
-                var refreshKey = $"auth:refresh:{userProvider.UserId}";
+                var accessKey = $"auth:token:{newUser.Id}";
+                var refreshKey = $"auth:refresh:{newUser.Id}";
 
-                await _redisService.SetAsync(accessKey, accessToken, TimeSpan.FromMinutes(expireMinutes));
+                await _redisService.SetAsync(accessKey, accessTokenString, TimeSpan.FromMinutes(_jwtSettings.ExpiresInMinutes));
                 await _redisService.SetAsync(refreshKey, refreshToken, TimeSpan.FromDays(7));
-
 
                 return new ServiceResult(true, "Social login success (new user)", new
                 {
-                    AccessToken = newToken,
+                    AccessToken = accessTokenString,
                     RefreshToken = refreshToken,
-                    IDUser = userProvider.UserId,
-                    ExpiresIn = expireMinutes * 60
+                    IDUser = newUser.Id,
+                    ExpiresIn = expiresIn
                 });
-
             }
         }
+
 
         public async Task<ServiceResult> StartMfaAsync(Guid userId)
         {

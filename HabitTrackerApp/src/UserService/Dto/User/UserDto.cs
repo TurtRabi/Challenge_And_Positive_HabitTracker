@@ -1,4 +1,6 @@
-﻿namespace UserService.Dto.User
+﻿using UserService.Dto.Role;
+
+namespace UserService.Dto.User
 {
     public class UserDto
     {
@@ -16,5 +18,6 @@
         public DateTime? UpdatedAt { get; set; }
         public bool? EmailVerified { get; set; }
         public bool? PhoneVerified { get; set; }
+        public List<RoleDto> Roles { get; set; }
     }
 }

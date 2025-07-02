@@ -1,8 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using UserService.Services.UserProviderService;
 
 namespace UserService.Controllers
 {
+    [AllowAnonymous]
     [ApiController]
     [Route("api/[controller]")]
     public class UserProviderController : ControllerBase
@@ -56,6 +58,7 @@ namespace UserService.Controllers
             return Ok(result);
         }
 
+        [Authorize(Roles = "admin")]
         [HttpGet("admin/search-users")]
         public async Task<IActionResult> SearchUsers([FromQuery] string? keyword, [FromQuery] int page = 1, [FromQuery] int pageSize = 10)
         {

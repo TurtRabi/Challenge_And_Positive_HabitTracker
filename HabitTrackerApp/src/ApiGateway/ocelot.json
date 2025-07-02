@@ -5,7 +5,11 @@
             "DownstreamScheme": "http",
             "ServiceName": "userservice",
             "UpstreamPathTemplate": "/user/{everything}",
-            "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ]
+            "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ],
+            "AuthenticationOptions": {
+                "AuthenticationProviderKey": "Bearer",
+                "AllowedScopes": []
+            }
         },
 
         {

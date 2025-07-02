@@ -1,10 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using UserService.Dto.Request.User;
 using UserService.Dto.User;
 using UserService.Services.ServiceUser;
 
+
 namespace UserService.Controllers
 {
+    [AllowAnonymous]
     [ApiController]
     [Route("api/[controller]")]
     public class UserController : ControllerBase

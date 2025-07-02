@@ -141,17 +141,22 @@ namespace UserService.Services.ServiceUser
                 result.Message = "Invalid username or password.";
                 return result;
             }
+            var getUserById = _unitOfWork.user.Query()
+                .Include(x => x.Roles)
+                .FirstOrDefault(u => u.Id == user.Id);
+            
 
             // Create Access Token
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.UTF8.GetBytes(_jwtSettings.Key);
-            var claims = new[]
+            var claims = new List<Claim>
             {
                 new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
                 new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
                 new Claim(JwtRegisteredClaimNames.Email, user.Email),
                 new Claim("username", user.Username)
             };
+            claims.AddRange(getUserById.Roles.Select(r => new Claim(ClaimTypes.Role, r.Name)));
 
             var tokenDescriptor = new SecurityTokenDescriptor
             {
@@ -464,16 +469,20 @@ namespace UserService.Services.ServiceUser
                 result.Message = "User not found.";
                 return result;
             }
+            var getUserById = _unitOfWork.user.Query()
+                .Include(x => x.Roles)
+                .FirstOrDefault(u => u.Id == user.Id);
 
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.UTF8.GetBytes(_jwtSettings.Key);
 
-            var claims = new[]
+            var claims = new List<Claim>
             {
                 new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
                 new Claim(JwtRegisteredClaimNames.Email, user.Email),
                 new Claim("username", user.Username)
             };
+            claims.AddRange(getUserById.Roles.Select(r => new Claim(ClaimTypes.Role, r.Name)));
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(claims),
@@ -577,12 +586,19 @@ namespace UserService.Services.ServiceUser
                 if (userData == null)
                     return new ServiceResult(false, "User not found");
 
-                var userDto = new UserWithRolesRequest
+                var userDto = new UserDto
                 {
                     Id = userData.Id,
                     Email = userData.Email,
-                    Username = userData.Username,
-                    Phone = userData.PhoneNumber,
+                    UserName = userData.Username,
+                    PhoneNumber = userData.PhoneNumber,
+                    AvatarUrl = userData.AvatarUrl,
+                    FullName = userData.FullName,
+                    Gender = userData.Gender,
+                    DateOfBirth = userData.DateOfBirth,
+                    Status = userData.Status,
+                    EmailVerified = userData.EmailVerified,
+                    PhoneVerified = userData.PhoneVerified,
                     Roles = userData.Roles.Select(ur => new RoleDto
                     {
                         Id = ur.Id,
